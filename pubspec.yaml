@@ -3,7 +3,7 @@ description: >
   Barcode flutter is a Flutter library for simple and fast Bar code rendering via a custom painter.
 version: 1.0.0
 author: Colin Chen <colinchen1984@gmail.com>
-homepage: https://github.com/bigsh1p/barcode.flutter
+homepage: https://github.com/bigship/barcode.flutter
 
 environment:
   sdk: ">=2.0.0-dev.58.0 < 3.0.0"
