@@ -568,10 +568,10 @@ class BarCodePainter extends CustomPainter {
 
     sum2nd = st.getUint8(6) + st.getUint8(4) + st.getUint8(2) + st.getUint8(0);
     sum3rd = st.getUint8(5) + st.getUint8(3) + st.getUint8(1);
-    if ((sum2nd + sum3rd * 3) % 10 == 0) {
+    if ((sum3rd + sum2nd * 3) % 10 == 0) {
       checkCode = 0;
     } else {
-      checkCode = 10 - (sum2nd + sum3rd * 3) % 10;
+      checkCode = 10 - (sum3rd + sum2nd * 3) % 10;
     }
 
     for (int i = 0; i < 7; i++) {
