@@ -34,8 +34,8 @@ Next, to reander a Barcode (Code39 for example), you can use the following code:
 new BarCodeImage(
   data: "1234ABCD",              // Code string. (required)
   codeType: BarCodeType.Code39,  // Code type (required)
-  lineWidth: 2.0,                // width for a single black/white bar (default: 2.0)
-  barHeight: 90.0,               // height for the entire widget (default: 100.0)
+  width: 200.0,                // width for bar
+  height: 90.0,               // height for the entire widget
   hasText: true,                 // Render with text label or not (default: false)
   onError: (error) {             // Error handler
     print('error = $error');
@@ -47,7 +47,7 @@ __NOTE__: You can only tweak the lineWidth parameter to change the entire widget
 
 __Error handling__: You have to make sure the code strings provided are valid. If you are not sure about the data, maybe it comes from
 user input or something, then setup onError method, and put your error handling logic there. Sometimes the library will render parts of
-the barcode if the data is invalid, and if that happens, I can't guarantee that the result can be recognized by a barcode scaner. 
+the barcode if the data is invalid, and if that happens, I can't guarantee that the result can be recognized by a barcode scaner.
 
 # Example
 See the `example` directory for a basic working example.

@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         new BarCodeItem(type: BarCodeType.CodeUPCA, codeStr: "123456789012", description: "UPCA", hasText: false),
         new BarCodeItem(type: BarCodeType.CodeUPCE, codeStr: "00123457", description: "UPCE with text", hasText: true),
         new BarCodeItem(type: BarCodeType.CodeUPCE, codeStr: "00123457", description: "UPCE", hasText: false),
-      ],) 
+      ],)
     );
   }
 }
@@ -50,14 +50,14 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: new ListView(
         children: widget.codeList.map((element) {
-          return new Padding(padding: const EdgeInsets.all(10.0), 
+          return new Padding(padding: const EdgeInsets.all(10.0),
             child: new Card(
               child: new Column(
                 children: <Widget>[
                   new Align(
-                    alignment: Alignment.centerLeft, 
-                    child: new Text(element.description, 
-                      textAlign: TextAlign.left, 
+                    alignment: Alignment.centerLeft,
+                    child: new Text(element.description,
+                      textAlign: TextAlign.left,
                       style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0, color: Colors.black45),
                     ),
                   ),
@@ -66,14 +66,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: new BarCodeImage(
                         data:element.codeStr,
                         codeType: element.type,
-                        lineWidth: 2.0,
-                        barHeight: 100.0,
+                        width: 200.0,
+                        height: 100.0,
                         hasText: element.hasText,
                         onError: (error) {
                           print("Generate barcode failed. error msg: $error");
                         },
                       ),
-                    ) 
+                    )
                   )
                 ]
               )

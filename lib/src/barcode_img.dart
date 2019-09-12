@@ -13,38 +13,44 @@ class BarCodeImage extends StatelessWidget {
   BarCodeImage({
     @required this.data,
     @required this.codeType,
-    this.lineWidth = 2.0,
-    this.barHeight = 100.0,
+    @required this.width,
+    @required this.height,
     this.padding = const EdgeInsets.all(5.0),
     this.backgroundColor,
     this.hasText = false,
-    Color foregroundColor = const Color(0xFF000000),
+    this.foregroundColor = const Color(0xFF000000),
     this.onError,
-  }) : _painter = new BarCodePainter(
-            data, codeType, lineWidth, hasText, foregroundColor, onError: onError);
+  });
 
   final String data;
   final BarCodeType codeType;
-  final BarCodePainter _painter;
   final Color backgroundColor;
   final EdgeInsets padding;
-  final double lineWidth;
-  final double barHeight;
+  final double width;
+  final double height;
   final hasText;
   final BarCodeError onError;
+  final Color foregroundColor;
 
   @override
   Widget build(BuildContext context) {
     return new LayoutBuilder(
       builder: (context, constraints) {
         return new Container(
-          width: _calcCanvasWidth(this.data, this.codeType, this.lineWidth),
-          height: hasText ? this.barHeight * 1.08 : this.barHeight,
+          width: width,
+          height: height,
           color: backgroundColor,
           child: new Padding(
             padding: this.padding,
             child: new CustomPaint(
-              painter: _painter,
+              painter: BarCodePainter(
+                data,
+                codeType,
+                _calcLineWidth(data, codeType, width),
+                hasText,
+                foregroundColor,
+                onError: onError,
+              ),
             ),
           ),
         );
@@ -52,23 +58,23 @@ class BarCodeImage extends StatelessWidget {
     );
   }
 
-  double _calcCanvasWidth(String content, BarCodeType type, double lineWidth) {
+  double _calcLineWidth(String content, BarCodeType type, double width) {
     int strLength = content.length;
-    switch(type) {
+    switch (type) {
       case BarCodeType.Code39:
-        return (strLength+2)*13*lineWidth;
+        return width / 13 / (strLength + 2);
       case BarCodeType.Code93:
-        return (strLength+5)*9*lineWidth-3;
+        return (width + 3) / 9 / (strLength + 5);
       case BarCodeType.Code128:
-        return (strLength+2)*11*lineWidth+13*lineWidth; 
+        return width / ((strLength + 2) * 11 + 13);
       case BarCodeType.CodeEAN13:
-        return (lineWidth*113);
+        return (width / 113);
       case BarCodeType.CodeEAN8:
-        return (lineWidth*81);
+        return (width / 81);
       case BarCodeType.CodeUPCA:
-        return (lineWidth*113);
+        return (width / 113);
       case BarCodeType.CodeUPCE:
-        return (lineWidth*67);
+        return (width / 67);
       default:
         return 0.0;
     }
