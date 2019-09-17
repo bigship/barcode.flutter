@@ -6,6 +6,16 @@ __Barcode Flutter is a Flutter library for simple and fast Barcode rendering via
 
 <hr>
 
+# Update Notes
+1.0.2
+- Fix EAN8 code invalid checksum bug
+
+1.0.1
+- Fix issue. Scanning problem when code128 contains character 'M'
+
+1.0.0
+- Initial release
+
 # Features
 - Supports code type: __Code39__, __Code93__, __Code128__, __EAN13__, __EAN8__, __UPCA__, __UPCE__
 - Supports render with or without text label
@@ -17,7 +27,7 @@ You can install the package by adding the following lines to your `pubspec.yaml`
 
 ```yaml
 dependencies:
-    barcode_flutter: ^1.0.0
+    barcode_flutter: ^1.0.2
 ```
 
 After adding the dependency to your `pubspec.yaml` you can run: `flutter packages get` or update your packages using your IDE.
