@@ -5,6 +5,5 @@
  */
 
 export 'src/barcode_enum.dart';
-export 'src/barcode_img.dart';
+export 'src/barcode_image.dart';
 export 'src/barcode_painter.dart';
-
