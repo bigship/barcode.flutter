@@ -62,11 +62,19 @@ class BarCodeImage extends StatelessWidget {
     double calculatedWidth = 0;
     switch (type) {
       case BarCodeType.Code39:
-        calculatedWidth = (strLength + 2) * 13 * lineWidth;
+        // The painter renders each character as 12 lines and calculates the
+        // space for a trailing gap. Every Code39 barcode character ends
+        // with a single "white" line.
+        // So, we subtract one more line to remove the trailing gap
+        calculatedWidth = (strLength + 2) * 13 * lineWidth - lineWidth;
         //print("calculated width = $calculatedWidth");
         return calculatedWidth;
       case BarCodeType.Code93:
-        return (strLength + 5) * 9 * lineWidth - 3;
+        // We have removed an extra character that was painted at the end
+        // of this barcode type and replaced it with a single bar
+        // as per the wikipedia specification.
+        //return (strLength + 5) * 9 * lineWidth - 3;
+        return (strLength + 4) * 9 * lineWidth + lineWidth;
       case BarCodeType.Code128:
         return (strLength + 2) * 11 * lineWidth + 13 * lineWidth;
       case BarCodeType.CodeEAN13:
