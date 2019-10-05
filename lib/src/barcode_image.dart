@@ -15,23 +15,31 @@ class BarCodeImage extends StatelessWidget {
     @required this.codeType,
     this.lineWidth = 2.0,
     this.barHeight = 100.0,
-    this.padding = const EdgeInsets.all(5.0),
-    this.backgroundColor,
+    this.foregroundColor = const Color(0xFF000000),
+    this.backgroundColor = const Color(0xFFFFFFFF),
     this.hasText = false,
-    Color foregroundColor = const Color(0xFF000000),
+    this.fontSize = 15.0,
     this.onError,
   }) : _painter = new BarCodePainter(
-            data, codeType, lineWidth, hasText, foregroundColor, onError: onError);
+          data,
+          codeType,
+          lineWidth,
+          hasText,
+          foregroundColor,
+          backgroundColor,
+          onError: onError,
+        );
 
+  final BarCodePainter _painter;
   final String data;
   final BarCodeType codeType;
-  final BarCodePainter _painter;
+  final Color foregroundColor;
   final Color backgroundColor;
-  final EdgeInsets padding;
   final double lineWidth;
   final double barHeight;
   final hasText;
   final BarCodeError onError;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +49,8 @@ class BarCodeImage extends StatelessWidget {
           width: _calcCanvasWidth(this.data, this.codeType, this.lineWidth),
           height: hasText ? this.barHeight * 1.08 : this.barHeight,
           color: backgroundColor,
-          child: new Padding(
-            padding: this.padding,
-            child: new CustomPaint(
-              painter: _painter,
-            ),
+          child: new CustomPaint(
+            painter: _painter,
           ),
         );
       },
@@ -54,21 +59,24 @@ class BarCodeImage extends StatelessWidget {
 
   double _calcCanvasWidth(String content, BarCodeType type, double lineWidth) {
     int strLength = content.length;
-    switch(type) {
+    double calculatedWidth = 0;
+    switch (type) {
       case BarCodeType.Code39:
-        return (strLength+2)*13*lineWidth;
+        calculatedWidth = (strLength + 2) * 13 * lineWidth;
+        //print("calculated width = $calculatedWidth");
+        return calculatedWidth;
       case BarCodeType.Code93:
-        return (strLength+5)*9*lineWidth-3;
+        return (strLength + 5) * 9 * lineWidth - 3;
       case BarCodeType.Code128:
-        return (strLength+2)*11*lineWidth+13*lineWidth; 
+        return (strLength + 2) * 11 * lineWidth + 13 * lineWidth;
       case BarCodeType.CodeEAN13:
-        return (lineWidth*113);
+        return (lineWidth * 113);
       case BarCodeType.CodeEAN8:
-        return (lineWidth*81);
+        return (lineWidth * 81);
       case BarCodeType.CodeUPCA:
-        return (lineWidth*113);
+        return (lineWidth * 113);
       case BarCodeType.CodeUPCE:
-        return (lineWidth*67);
+        return (lineWidth * 67);
       default:
         return 0.0;
     }
