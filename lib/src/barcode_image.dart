@@ -8,6 +8,28 @@ import 'package:flutter/widgets.dart';
 import 'barcode_painter.dart';
 import 'barcode_params.dart';
 
+/// A barcode custom painter
+/// 
+/// ## BarCodeParam Types
+/// ```dart 
+/// EAN13
+/// EAN8
+/// Code39
+/// Code93
+/// Code128
+/// UPCA
+/// UPCE
+/// ITF14
+/// ````
+/// 
+/// ### Basic usage
+/// ```dart
+/// BarCodeImage(
+///   ITF14BarCodeParams(
+///     "15400141288763",
+///   )
+/// )
+/// ```
 class BarCodeImage<T extends BarCodeParams> extends StatelessWidget {
   BarCodeImage(
     this.params, {

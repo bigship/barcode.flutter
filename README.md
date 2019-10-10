@@ -7,6 +7,10 @@ __Barcode Flutter is a Flutter library for simple and fast Barcode rendering via
 <hr>
 
 # Update Notes
+2.0.0
+ - Add ITF-14 support
+ - Switch to BarCodeParams class instead of enum
+ 
 1.0.2
 - Fix EAN8 code invalid checksum bug
 
