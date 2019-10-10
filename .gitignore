@@ -1,0 +1,33 @@
+# See https://www.dartlang.org/guides/libraries/private-files
+
+# Files and directories created by pub
+.dart_tool/
+.packages
+.pub/
+build/
+# If you're building an application, you may want to check-in your pubspec.lock
+pubspec.lock
+
+# Directory created by dartdoc
+# If you don't generate documentation locally you can remove this line.
+doc/api/
+
+.vscode/
+.flutter-plugins
+.gradle/
+*.log
+android/local.properties
+Runner.build/
+flutter_assets/
+ios/Pods/
+ios/Podfile.lock
+ios/build/
+/ios/.symlinks/
+android/key.properties
+.DS_STORE
+
+#these files dont seem to get generated on build which causes issues on ios
+!Debug.xcconfig
+!Release.xcconfig
+!AppFrameworkInfo.plist
+ios/Flutter/
