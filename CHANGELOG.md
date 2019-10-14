@@ -5,4 +5,4 @@
 ## 2.0.0
 
 - Switch to BarCodeParams
-- Add ITF-14 support
+- Add ITF support

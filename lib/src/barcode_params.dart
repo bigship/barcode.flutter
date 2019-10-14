@@ -119,7 +119,7 @@ class UPCEBarCodeParams extends BarCodeParams {
 
 /// Params used for the ITF-14 BarCode format
 ///
-class ITF14BarCodeParams extends BarCodeParams {
+class ITFBarCodeParams extends BarCodeParams {
   /// The width of the wide bars as a multiple of [lineWidth]
   ///
   /// This must be in the range of 2.25 <=> 3.0
@@ -142,7 +142,7 @@ class ITF14BarCodeParams extends BarCodeParams {
   ///
   final bool withBearerBars;
 
-  ITF14BarCodeParams(
+  ITFBarCodeParams(
     String data, {
     bool withText = false,
     double lineWidth = 2.0,
@@ -158,5 +158,6 @@ class ITF14BarCodeParams extends BarCodeParams {
 
   @override
   double get barCodeWidth =>
-      (7 * (4 * wideBarRatio + 6) + wideBarRatio + 6) * lineWidth + (2 * (lineWidth * quietZoneRatio));
+      ((data.length / 2).ceil() * (4 * wideBarRatio + 6) + wideBarRatio + 6) * lineWidth +
+      (2 * (lineWidth * quietZoneRatio));
 }

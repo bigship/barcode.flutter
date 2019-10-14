@@ -133,19 +133,19 @@ class MyApp extends StatelessWidget {
             ),
           ),
           BarCodeItem(
-            description: "ITF-14 with text",
+            description: "ITF with text",
             image: BarCodeImage(
-              ITF14BarCodeParams(
-                "15400141288763",
+              ITFBarCodeParams(
+                "133175398642265258",
                 withText: true,
               ),
             ),
           ),
           BarCodeItem(
-            description: "ITF-14",
+            description: "ITF",
             image: BarCodeImage(
-              ITF14BarCodeParams(
-                "15400141288763",
+              ITFBarCodeParams(
+                "133175398642265258",
               ),
             ),
           ),

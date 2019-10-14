@@ -35,8 +35,8 @@ class BarCodePainter extends CustomPainter {
       _drawBarCodeUPCA(canvas, size);
     } else if (params is UPCEBarCodeParams) {
       _drawBarCodeUPCE(canvas, size);
-    } else if (params is ITF14BarCodeParams) {
-      _drawBarCodeITF14(canvas, size);
+    } else if (params is ITFBarCodeParams) {
+      _drawBarCodeITF(canvas, size);
     }
   }
 
@@ -1505,7 +1505,7 @@ class BarCodePainter extends CustomPainter {
     }
   }
 
-  /// ITF-14 contains 70 bits of data (14 digits * 5 bits)
+  /// ITF painter
   ///
   /// Start pattern is 4 bits of (0, 0, 0, 0)
   /// Stop pattern is 3 bits of (1, 0, 0)
@@ -1515,12 +1515,12 @@ class BarCodePainter extends CustomPainter {
   ///
   /// Alternating bits are dark/light/dart/light etc..
   ///
-  /// The input data is split into 7 groups of 2 digit groups,
-  /// there bit values are interleaved to form a 10 bit barcode segment
+  /// The input data is split into groups of 2 digits,
+  /// these bit values are interleaved to form a 10 bit barcode segment
   ///
   /// More info can be found here in Section 5.3 here: https://www.gs1.org/sites/default/files/docs/barcodes/GS1_General_Specifications.pdf
-  void _drawBarCodeITF14(Canvas canvas, Size size) {
-    final itfParams = params as ITF14BarCodeParams;
+  void _drawBarCodeITF(Canvas canvas, Size size) {
+    final itfParams = params as ITFBarCodeParams;
 
     /// Wish this was added right now, https://github.com/dart-lang/language/issues/581
     /// 0 = 0b00110,
@@ -1548,18 +1548,8 @@ class BarCodePainter extends CustomPainter {
     ];
 
     var cleanData = itfParams.data;
-    if (cleanData.length < 14) {
-      cleanData = cleanData.padLeft(14, "0");
-    }
-
-    if (cleanData.length != 14) {
-      String errorMsg = "Invalid ITF-14 data string, must be 14 digits";
-      if (this.onError != null) {
-        this.onError(errorMsg);
-      } else {
-        print(errorMsg);
-      }
-      return;
+    if (cleanData.length % 2 != 0) {
+      cleanData = cleanData.padLeft(2 * (cleanData.length / 2).ceil(), "0");
     }
 
     final fontSize = 15.0;
@@ -1592,7 +1582,7 @@ class BarCodePainter extends CustomPainter {
     canvas.drawRect(narrowBar.translate(offsetX, 0), painter);
     offsetX += narrowWidth + narrowWidth;
 
-    for (var x = 0; x < 14; x += 2) {
+    for (var x = 0; x < cleanData.length; x += 2) {
       final v0 = int.tryParse(cleanData[x]);
       final v1 = int.tryParse(cleanData[x + 1]);
 
@@ -1641,8 +1631,9 @@ class BarCodePainter extends CustomPainter {
     /// Draw the text
     ///
     if (itfParams.withText) {
-      final labelText =
-          "${cleanData.substring(0, 1)} ${cleanData.substring(1, 3)} ${cleanData.substring(3, 8)} ${cleanData.substring(8, 13)} ${cleanData.substring(13)}";
+      final labelText = cleanData.length == 14
+          ? "${cleanData.substring(0, 1)} ${cleanData.substring(1, 3)} ${cleanData.substring(3, 8)} ${cleanData.substring(8, 13)} ${cleanData.substring(13)}"
+          : cleanData;
       final span = TextSpan(
         style: TextStyle(
           color: Colors.black,
