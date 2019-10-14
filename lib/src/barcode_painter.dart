@@ -1631,9 +1631,10 @@ class BarCodePainter extends CustomPainter {
     /// Draw the text
     ///
     if (itfParams.withText) {
-      final labelText = cleanData.length == 14
+      final labelContent = itfParams.altText ?? cleanData;
+      final labelText = itfParams.altText == null && labelContent.length == 14
           ? "${cleanData.substring(0, 1)} ${cleanData.substring(1, 3)} ${cleanData.substring(3, 8)} ${cleanData.substring(8, 13)} ${cleanData.substring(13)}"
-          : cleanData;
+          : labelContent;
       final span = TextSpan(
         style: TextStyle(
           color: Colors.black,
