@@ -7,4 +7,4 @@
 export 'src/barcode_params.dart';
 export 'src/barcode_image.dart';
 export 'src/barcode_painter.dart';
-
+export 'src/barcode_enum.dart';

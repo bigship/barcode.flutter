@@ -7,10 +7,10 @@ __Barcode Flutter is a Flutter library for simple and fast Barcode rendering via
 <hr>
 
 # Update Notes
-2.0.0
+1.1.0
  - Add ITF support
- - Switch to BarCodeParams class instead of enum
- 
+ - Add BarCodeParams class for future expandability
+
 1.0.2
 - Fix EAN8 code invalid checksum bug
 
@@ -31,7 +31,7 @@ You can install the package by adding the following lines to your `pubspec.yaml`
 
 ```yaml
 dependencies:
-    barcode_flutter: ^1.0.2
+    barcode_flutter: ^1.1.0
 ```
 
 After adding the dependency to your `pubspec.yaml` you can run: `flutter packages get` or update your packages using your IDE.
@@ -45,12 +45,13 @@ import 'package:barcode_flutter/barcode_flutter.dart';
 
 Next, to reander a Barcode (Code39 for example), you can use the following code:
 ```dart
-new BarCodeImage(
-  data: "1234ABCD",              // Code string. (required)
-  codeType: BarCodeType.Code39,  // Code type (required)
-  lineWidth: 2.0,                // width for a single black/white bar (default: 2.0)
-  barHeight: 90.0,               // height for the entire widget (default: 100.0)
-  hasText: true,                 // Render with text label or not (default: false)
+BarCodeImage(
+  params: Code39BarCodeParams(
+    "1234ABCD",
+    lineWidth: 2.0,                // width for a single black/white bar (default: 2.0)
+    barHeight: 90.0,               // height for the entire widget (default: 100.0)
+    withText: true,                 // Render with text label or not (default: false)
+  ),
   onError: (error) {             // Error handler
     print('error = $error');
   },

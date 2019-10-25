@@ -16,24 +16,22 @@ class MyApp extends StatelessWidget {
           BarCodeItem(
             description: "Code39 with text",
             image: BarCodeImage(
-              Code39BarCodeParams(
-                "CODE39",
-                withText: true,
-              ),
+              data: "CODE39",
+              codeType: BarCodeType.Code39,
+              hasText: true,
             ),
           ),
           BarCodeItem(
             description: "Code39",
             image: BarCodeImage(
-              Code39BarCodeParams(
-                "CODE39",
-              ),
+              data: "CODE39",
+              codeType: BarCodeType.Code39,
             ),
           ),
           BarCodeItem(
             description: "Code39 with text",
             image: BarCodeImage(
-              Code93BarCodeParams(
+              params: Code93BarCodeParams(
                 "CODE93",
                 withText: true,
               ),
@@ -42,7 +40,7 @@ class MyApp extends StatelessWidget {
           BarCodeItem(
             description: "Code93",
             image: BarCodeImage(
-              Code93BarCodeParams(
+              params: Code93BarCodeParams(
                 "CODE93",
               ),
             ),
@@ -50,7 +48,7 @@ class MyApp extends StatelessWidget {
           BarCodeItem(
             description: "Code128 with text",
             image: BarCodeImage(
-              Code128BarCodeParams(
+              params: Code128BarCodeParams(
                 "CODE128",
                 withText: true,
               ),
@@ -59,7 +57,7 @@ class MyApp extends StatelessWidget {
           BarCodeItem(
             description: "Code128",
             image: BarCodeImage(
-              Code128BarCodeParams(
+              params: Code128BarCodeParams(
                 "CODE128",
               ),
             ),
@@ -67,7 +65,7 @@ class MyApp extends StatelessWidget {
           BarCodeItem(
             description: "EAN8 with text",
             image: BarCodeImage(
-              EAN8BarCodeParams(
+              params: EAN8BarCodeParams(
                 "65833254",
                 withText: true,
               ),
@@ -76,7 +74,7 @@ class MyApp extends StatelessWidget {
           BarCodeItem(
             description: "EAN8",
             image: BarCodeImage(
-              EAN8BarCodeParams(
+              params: EAN8BarCodeParams(
                 "65833254",
               ),
             ),
@@ -84,7 +82,7 @@ class MyApp extends StatelessWidget {
           BarCodeItem(
             description: "EAN13 with text",
             image: BarCodeImage(
-              EAN13BarCodeParams(
+              params: EAN13BarCodeParams(
                 "9501101530003",
                 withText: true,
               ),
@@ -93,7 +91,7 @@ class MyApp extends StatelessWidget {
           BarCodeItem(
             description: "EAN13",
             image: BarCodeImage(
-              EAN13BarCodeParams(
+              params: EAN13BarCodeParams(
                 "9501101530003",
               ),
             ),
@@ -101,7 +99,7 @@ class MyApp extends StatelessWidget {
           BarCodeItem(
             description: "UPCA with text",
             image: BarCodeImage(
-              UPCABarCodeParams(
+              params: UPCABarCodeParams(
                 "123456789012",
                 withText: true,
               ),
@@ -110,7 +108,7 @@ class MyApp extends StatelessWidget {
           BarCodeItem(
             description: "UPCA",
             image: BarCodeImage(
-              UPCABarCodeParams(
+              params: UPCABarCodeParams(
                 "123456789012",
               ),
             ),
@@ -118,7 +116,7 @@ class MyApp extends StatelessWidget {
           BarCodeItem(
             description: "UPCE with text",
             image: BarCodeImage(
-              UPCEBarCodeParams(
+              params: UPCEBarCodeParams(
                 "00123457",
                 withText: true,
               ),
@@ -127,7 +125,7 @@ class MyApp extends StatelessWidget {
           BarCodeItem(
             description: "UPCE",
             image: BarCodeImage(
-              UPCEBarCodeParams(
+              params: UPCEBarCodeParams(
                 "00123457",
               ),
             ),
@@ -135,7 +133,7 @@ class MyApp extends StatelessWidget {
           BarCodeItem(
             description: "ITF with text",
             image: BarCodeImage(
-              ITFBarCodeParams(
+              params: ITFBarCodeParams(
                 "133175398642265258",
                 withText: true,
               ),
@@ -144,7 +142,7 @@ class MyApp extends StatelessWidget {
           BarCodeItem(
             description: "ITF",
             image: BarCodeImage(
-              ITFBarCodeParams(
+              params: ITFBarCodeParams(
                 "133175398642265258",
               ),
             ),
