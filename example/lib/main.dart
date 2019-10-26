@@ -1,93 +1,214 @@
 import 'package:flutter/material.dart';
 import 'package:barcode_flutter/barcode_flutter.dart';
 
-void main() => runApp(new MyApp());
-
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Flutter Demo',
-      theme: new ThemeData(
+    return MaterialApp(
+      title: 'Barcode Flutter Demo',
+      theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: new MyHomePage(codeList: [
-        new BarCodeItem(type: BarCodeType.Code39, codeStr: "CODE39", description: "Code39 with text", hasText: true),
-        new BarCodeItem(type: BarCodeType.Code39, codeStr: "CODE39", description: "Code39", hasText: false),
-        new BarCodeItem(type: BarCodeType.Code93, codeStr: "BARCODE93", description: "Code93 with text", hasText: true),
-        new BarCodeItem(type: BarCodeType.Code93, codeStr: "BARCODE93", description: "Code93", hasText: false),
-        new BarCodeItem(type: BarCodeType.Code128, codeStr: "BARCODE128", description: "Code128 with text", hasText: true),
-        new BarCodeItem(type: BarCodeType.Code128, codeStr: "BARCODE128", description: "Code128", hasText: false),
-        new BarCodeItem(type: BarCodeType.CodeEAN8, codeStr: "65833254", description: "EAN8 with text", hasText: true),
-        new BarCodeItem(type: BarCodeType.CodeEAN8, codeStr: "65833254", description: "EAN8", hasText: false),
-        new BarCodeItem(type: BarCodeType.CodeEAN13, codeStr: "9501101530003", description: "EAN13 with text", hasText: true),
-        new BarCodeItem(type: BarCodeType.CodeEAN13, codeStr: "9501101530003", description: "EAN13", hasText: false),
-        new BarCodeItem(type: BarCodeType.CodeUPCA, codeStr: "123456789012", description: "UPCA with text", hasText: true),
-        new BarCodeItem(type: BarCodeType.CodeUPCA, codeStr: "123456789012", description: "UPCA", hasText: false),
-        new BarCodeItem(type: BarCodeType.CodeUPCE, codeStr: "00123457", description: "UPCE with text", hasText: true),
-        new BarCodeItem(type: BarCodeType.CodeUPCE, codeStr: "00123457", description: "UPCE", hasText: false),
-      ],) 
+      home: MyHomePage(
+        barcodes: [
+          BarCodeItem(
+            description: "Code39 with text",
+            image: BarCodeImage(
+              data: "CODE39",
+              codeType: BarCodeType.Code39,
+              hasText: true,
+            ),
+          ),
+          BarCodeItem(
+            description: "Code39",
+            image: BarCodeImage(
+              data: "CODE39",
+              codeType: BarCodeType.Code39,
+            ),
+          ),
+          BarCodeItem(
+            description: "Code39 with text",
+            image: BarCodeImage(
+              params: Code93BarCodeParams(
+                "CODE93",
+                withText: true,
+              ),
+            ),
+          ),
+          BarCodeItem(
+            description: "Code93",
+            image: BarCodeImage(
+              params: Code93BarCodeParams(
+                "CODE93",
+              ),
+            ),
+          ),
+          BarCodeItem(
+            description: "Code128 with text",
+            image: BarCodeImage(
+              params: Code128BarCodeParams(
+                "CODE128",
+                withText: true,
+              ),
+            ),
+          ),
+          BarCodeItem(
+            description: "Code128",
+            image: BarCodeImage(
+              params: Code128BarCodeParams(
+                "CODE128",
+              ),
+            ),
+          ),
+          BarCodeItem(
+            description: "EAN8 with text",
+            image: BarCodeImage(
+              params: EAN8BarCodeParams(
+                "65833254",
+                withText: true,
+              ),
+            ),
+          ),
+          BarCodeItem(
+            description: "EAN8",
+            image: BarCodeImage(
+              params: EAN8BarCodeParams(
+                "65833254",
+              ),
+            ),
+          ),
+          BarCodeItem(
+            description: "EAN13 with text",
+            image: BarCodeImage(
+              params: EAN13BarCodeParams(
+                "9501101530003",
+                withText: true,
+              ),
+            ),
+          ),
+          BarCodeItem(
+            description: "EAN13",
+            image: BarCodeImage(
+              params: EAN13BarCodeParams(
+                "9501101530003",
+              ),
+            ),
+          ),
+          BarCodeItem(
+            description: "UPCA with text",
+            image: BarCodeImage(
+              params: UPCABarCodeParams(
+                "123456789012",
+                withText: true,
+              ),
+            ),
+          ),
+          BarCodeItem(
+            description: "UPCA",
+            image: BarCodeImage(
+              params: UPCABarCodeParams(
+                "123456789012",
+              ),
+            ),
+          ),
+          BarCodeItem(
+            description: "UPCE with text",
+            image: BarCodeImage(
+              params: UPCEBarCodeParams(
+                "00123457",
+                withText: true,
+              ),
+            ),
+          ),
+          BarCodeItem(
+            description: "UPCE",
+            image: BarCodeImage(
+              params: UPCEBarCodeParams(
+                "00123457",
+              ),
+            ),
+          ),
+          BarCodeItem(
+            description: "ITF with text",
+            image: BarCodeImage(
+              params: ITFBarCodeParams(
+                "133175398642265258",
+                withText: true,
+              ),
+            ),
+          ),
+          BarCodeItem(
+            description: "ITF",
+            image: BarCodeImage(
+              params: ITFBarCodeParams(
+                "133175398642265258",
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.codeList}) : super(key: key);
-  final List<BarCodeItem> codeList;
+  MyHomePage({this.barcodes});
+  final List<BarCodeItem> barcodes;
   final String title = "BarCode Flutter";
 
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(widget.title),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
       ),
-      body: new ListView(
-        children: widget.codeList.map((element) {
-          return new Padding(padding: const EdgeInsets.all(10.0), 
-            child: new Card(
-              child: new Column(
+      body: ListView(
+        children: widget.barcodes.map((element) {
+          return Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Card(
+              child: Column(
                 children: <Widget>[
-                  new Align(
-                    alignment: Alignment.centerLeft, 
-                    child: new Text(element.description, 
-                      textAlign: TextAlign.left, 
-                      style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0, color: Colors.black45),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      element.description,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                        color: Colors.black45,
+                      ),
                     ),
                   ),
-                  new Center(child:
-                    new Container(padding: const EdgeInsets.all(10.0),
-                      child: new BarCodeImage(
-                        data:element.codeStr,
-                        codeType: element.type,
-                        lineWidth: 2.0,
-                        barHeight: 100.0,
-                        hasText: element.hasText,
-                        onError: (error) {
-                          print("Generate barcode failed. error msg: $error");
-                        },
-                      ),
-                    ) 
+                  Center(
+                    child: Container(
+                      padding: const EdgeInsets.all(10.0),
+                      child: element.image,
+                    ),
                   )
-                ]
-              )
-          ),) ;
-        }
-      ).toList()
-    ));
+                ],
+              ),
+            ),
+          );
+        }).toList(),
+      ),
+    );
   }
 }
 
 class BarCodeItem {
-  BarCodeType type;
-  String codeStr;
   String description;
-  bool hasText;
-  BarCodeItem({this.type, this.codeStr, this.description, this.hasText});
+  BarCodeImage image;
+  BarCodeItem({
+    this.image,
+    this.description,
+  });
 }
