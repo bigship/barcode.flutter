@@ -1,9 +1,6 @@
 __Barcode Flutter is a Flutter library for simple and fast Barcode rendering via custom painter__
-<br/>
-<hr>
-<img src="http://i.imgur.com/qW856Dh.png" align="center" width="320">
-<br/>
 
+![screenshot](http://i.imgur.com/qW856Dh.png)
 <hr>
 
 # Update Notes
@@ -50,9 +47,9 @@ BarCodeImage(
     "1234ABCD",
     lineWidth: 2.0,                // width for a single black/white bar (default: 2.0)
     barHeight: 90.0,               // height for the entire widget (default: 100.0)
-    withText: true,                 // Render with text label or not (default: false)
+    withText: true,                // Render with text label or not (default: false)
   ),
-  onError: (error) {             // Error handler
+  onError: (error) {               // Error handler
     print('error = $error');
   },
 );
