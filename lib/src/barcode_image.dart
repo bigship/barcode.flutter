@@ -87,7 +87,7 @@ class BarCodeImage<T extends BarCodeParams> extends StatelessWidget {
       case BarCodeType.Code128:
         return Code128BarCodeParams(data, withText: hasText, lineWidth: lineWidth, barHeight: barHeight);
       case BarCodeType.Codabar:
-        return CadabarBarCodeParams(data, withText: hasText, lineWidth: lineWidth, barHeight: barHeight);
+        return CodabarBarCodeParams(data, withText: hasText, lineWidth: lineWidth, barHeight: barHeight);
     }
     return null;
   }
