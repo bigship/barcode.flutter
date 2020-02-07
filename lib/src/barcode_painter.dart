@@ -37,6 +37,8 @@ class BarCodePainter extends CustomPainter {
       _drawBarCodeUPCE(canvas, size);
     } else if (params is ITFBarCodeParams) {
       _drawBarCodeITF(canvas, size);
+    } else if (params is CodabarBarCodeParams) {
+      _drawBarCodeCodabar(canvas, size);
     }
   }
 
@@ -1656,6 +1658,78 @@ class BarCodePainter extends CustomPainter {
           height + textPadding,
         ),
       );
+    }
+  }
+
+void _drawBarCodeCodabar(Canvas canvas, Size size) {
+    final bitSet = {
+      "0": "101010011",
+			"1": "101011001",
+			"2": "101001011",
+			"3": "110010101",
+			"4": "101101001",
+			"5": "110101001",
+			"6": "100101011",
+			"7": "100101101",
+			"8": "100110101",
+			"9": "110100101",
+			"-": "101001101",
+			"$": "101100101",
+			":": "1101011011",
+			"/": "1101101011",
+			".": "1101101101",
+			"+": "101100110011",
+			"A": "1011001001",
+			"B": "1001001011",
+			"C": "1010010011",
+			"D": "1010011001"
+    };
+
+    final data = params.data;
+    final lineWidth = params.lineWidth;
+    final hasText = params.withText;
+
+    int codeValue = 0;
+    String bitValue = '';
+    bool hasError = false;
+    final painter = new Paint()..style = PaintingStyle.fill;
+    double height = hasText ? size.height * 0.85 : size.height;
+
+    for (int i = 0; i < data.length; i++) {
+      if (bitSet.containsKey(data[i])) {
+        bitValue = bitSet[data[i]];
+      } else {
+        bitValue = '';
+        hasError = true;
+      }
+
+      if (hasError) {
+        String errorMsg =
+            "Invalid content for Coddabar. Please check https://en.wikipedia.org/wiki/Codabar for reference.";
+        if (this.onError != null) {
+          this.onError(errorMsg);
+        } else {
+          print(errorMsg);
+        }
+        return;
+      }
+
+      for (int j = 0; j < bitValue.length; j++) {
+        Rect rect = new Rect.fromLTWH(13 * lineWidth + 13 * i * lineWidth + j * lineWidth, 0.0, lineWidth, height);
+        (bitValue[j] == '1') ? painter.color = Colors.black : painter.color = Colors.white;
+        canvas.drawRect(rect, painter);
+      }
+    }
+
+    if (hasText) {
+      for (int i = 0; i < data.length; i++) {
+        TextSpan span = new TextSpan(style: new TextStyle(color: Colors.black, fontSize: 15.0), text: data[i]);
+        TextPainter textPainter =
+            new TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr);
+        textPainter.layout();
+        textPainter.paint(
+            canvas, new Offset((size.width - data.length * 13 * lineWidth) / 2 + 13 * i * lineWidth, height));
+      }
     }
   }
 }

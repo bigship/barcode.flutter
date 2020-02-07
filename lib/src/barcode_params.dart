@@ -171,3 +171,18 @@ class ITFBarCodeParams extends BarCodeParams {
       ((data.length / 2).ceil() * (4 * wideBarRatio + 6) + wideBarRatio + 6) * lineWidth +
       (2 * (lineWidth * quietZoneRatio));
 }
+
+/// Params used for the Codabar BarCode format
+///
+class CodabarBarCodeParams extends BarCodeParams {
+  CodabarBarCodeParams(
+    String data, {
+    bool withText = false,
+    double lineWidth = 2.0,
+    double barHeight = 100.0,
+    String altText,
+  }) : super(data, withText, lineWidth, barHeight, altText);
+
+  @override
+  double get barCodeWidth => (data.length + 2) * 13 * lineWidth;
+}

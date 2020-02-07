@@ -22,6 +22,7 @@ import 'barcode_params.dart';
 /// UPCA
 /// UPCE
 /// ITF
+/// Codabar
 /// ````
 ///
 /// ### Basic usage
@@ -85,6 +86,8 @@ class BarCodeImage<T extends BarCodeParams> extends StatelessWidget {
         return UPCEBarCodeParams(data, withText: hasText, lineWidth: lineWidth, barHeight: barHeight);
       case BarCodeType.Code128:
         return Code128BarCodeParams(data, withText: hasText, lineWidth: lineWidth, barHeight: barHeight);
+      case BarCodeType.Codabar:
+        return CadabarBarCodeParams(data, withText: hasText, lineWidth: lineWidth, barHeight: barHeight);
     }
     return null;
   }
