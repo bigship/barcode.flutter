@@ -253,32 +253,54 @@ class BarCodePainter extends CustomPainter {
       }
 
       for (int j = 0; j < 12; j++) {
-        Rect rect = new Rect.fromLTWH(13 * lineWidth + 13 * i * lineWidth + j * lineWidth, 0.0, lineWidth, height);
-        ((0x800 & (binSet[codeValue] << j)) == 0x800) ? painter.color = Colors.black : painter.color = Colors.white;
+        Rect rect = new Rect.fromLTWH(
+            13 * lineWidth + 13 * i * lineWidth + j * lineWidth,
+            0.0,
+            lineWidth,
+            height);
+        ((0x800 & (binSet[codeValue] << j)) == 0x800)
+            ? painter.color = Colors.black
+            : painter.color = Colors.white;
         canvas.drawRect(rect, painter);
       }
     }
 
     for (int i = 0; i < 12; i++) {
       Rect rect = new Rect.fromLTWH(i * lineWidth, 0.0, lineWidth, height);
-      ((0x800 & (binSet[43] << i)) == 0x800) ? painter.color = Colors.black : painter.color = Colors.white;
+      ((0x800 & (binSet[43] << i)) == 0x800)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
     for (int i = 0; i < 12; i++) {
-      Rect rect = new Rect.fromLTWH((13 + i) * lineWidth + 13 * (data.length) * lineWidth, 0.0, lineWidth, height);
-      ((0x800 & (binSet[43] << i)) == 0x800) ? painter.color = Colors.black : painter.color = Colors.white;
+      Rect rect = new Rect.fromLTWH(
+          (13 + i) * lineWidth + 13 * (data.length) * lineWidth,
+          0.0,
+          lineWidth,
+          height);
+      ((0x800 & (binSet[43] << i)) == 0x800)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
     if (hasText) {
       for (int i = 0; i < data.length; i++) {
-        TextSpan span = new TextSpan(style: new TextStyle(color: Colors.black, fontSize: 15.0), text: data[i]);
-        TextPainter textPainter =
-            new TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr);
+        TextSpan span = new TextSpan(
+            style: new TextStyle(color: Colors.black, fontSize: 15.0),
+            text: data[i]);
+        TextPainter textPainter = new TextPainter(
+            text: span,
+            textAlign: TextAlign.left,
+            textDirection: TextDirection.ltr);
         textPainter.layout();
         textPainter.paint(
-            canvas, new Offset((size.width - data.length * 13 * lineWidth) / 2 + 13 * i * lineWidth, height));
+            canvas,
+            new Offset(
+                (size.width - data.length * 13 * lineWidth) / 2 +
+                    13 * i * lineWidth,
+                height));
       }
     }
   }
@@ -348,7 +370,9 @@ class BarCodePainter extends CustomPainter {
 
     for (int i = 0; i < 8; i++) {
       Rect rect = new Rect.fromLTWH(i * lineWidth, 0.0, lineWidth, height);
-      ((0x80 & (binSet[47] << i)) == 0x80) ? painter.color = Colors.black : painter.color = Colors.white;
+      ((0x80 & (binSet[47] << i)) == 0x80)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
@@ -505,46 +529,84 @@ class BarCodePainter extends CustomPainter {
       sumK += strValue.getUint8(i) * (data.length - i + 1);
 
       for (int j = 0; j < 8; j++) {
-        Rect rect = new Rect.fromLTWH(9 * lineWidth + 9 * i * lineWidth + j * lineWidth, 0.0, lineWidth, height);
-        ((0x80 & (binSet[codeValue] << j)) == 0x80) ? painter.color = Colors.black : painter.color = Colors.white;
+        Rect rect = new Rect.fromLTWH(
+            9 * lineWidth + 9 * i * lineWidth + j * lineWidth,
+            0.0,
+            lineWidth,
+            height);
+        ((0x80 & (binSet[codeValue] << j)) == 0x80)
+            ? painter.color = Colors.black
+            : painter.color = Colors.white;
         canvas.drawRect(rect, painter);
       }
     }
 
     checkCodeC = sumC % 47;
     for (int i = 0; i < 8; i++) {
-      Rect rect = new Rect.fromLTWH(9 * lineWidth + (data.length * 9 + i) * lineWidth, 0.0, lineWidth, height);
-      ((0x80 & (binSet[checkCodeC] << i)) == 0x80) ? painter.color = Colors.black : painter.color = Colors.white;
+      Rect rect = new Rect.fromLTWH(
+          9 * lineWidth + (data.length * 9 + i) * lineWidth,
+          0.0,
+          lineWidth,
+          height);
+      ((0x80 & (binSet[checkCodeC] << i)) == 0x80)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
     checkCodeK = (sumK + checkCodeC) % 47;
     for (int i = 0; i < 8; i++) {
-      Rect rect = new Rect.fromLTWH(9 * lineWidth + ((data.length + 1) * 9 + i) * lineWidth, 0.0, lineWidth, height);
-      ((0x80 & (binSet[checkCodeK] << i)) == 0x80) ? painter.color = Colors.black : painter.color = Colors.white;
+      Rect rect = new Rect.fromLTWH(
+          9 * lineWidth + ((data.length + 1) * 9 + i) * lineWidth,
+          0.0,
+          lineWidth,
+          height);
+      ((0x80 & (binSet[checkCodeK] << i)) == 0x80)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
     for (int i = 0; i < 8; i++) {
-      Rect rect = new Rect.fromLTWH(9 * lineWidth + ((data.length + 2) * 9 + i) * lineWidth, 0.0, lineWidth, height);
-      ((0x80 & (binSet[47] << i)) == 0x80) ? painter.color = Colors.black : painter.color = Colors.white;
+      Rect rect = new Rect.fromLTWH(
+          9 * lineWidth + ((data.length + 2) * 9 + i) * lineWidth,
+          0.0,
+          lineWidth,
+          height);
+      ((0x80 & (binSet[47] << i)) == 0x80)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
     for (int i = 0; i < 8; i++) {
-      Rect rect = new Rect.fromLTWH(9 * lineWidth + ((data.length + 3) * 9 + i) * lineWidth, 0.0, lineWidth, height);
-      ((0x80 & (binSet[1] << i)) == 0x80) ? painter.color = Colors.black : painter.color = Colors.white;
+      Rect rect = new Rect.fromLTWH(
+          9 * lineWidth + ((data.length + 3) * 9 + i) * lineWidth,
+          0.0,
+          lineWidth,
+          height);
+      ((0x80 & (binSet[1] << i)) == 0x80)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
     if (hasText) {
       for (int i = 0; i < data.length; i++) {
-        TextSpan span = new TextSpan(style: new TextStyle(color: Colors.black, fontSize: 15.0), text: data[i]);
-        TextPainter textPainter =
-            new TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr);
+        TextSpan span = new TextSpan(
+            style: new TextStyle(color: Colors.black, fontSize: 15.0),
+            text: data[i]);
+        TextPainter textPainter = new TextPainter(
+            text: span,
+            textAlign: TextAlign.left,
+            textDirection: TextDirection.ltr);
         textPainter.layout();
         textPainter.paint(
-            canvas, new Offset((size.width - data.length * 8 * lineWidth) / 2 + 8 * i * lineWidth, height));
+            canvas,
+            new Offset(
+                (size.width - data.length * 8 * lineWidth) / 2 +
+                    8 * i * lineWidth,
+                height));
       }
     }
   }
@@ -672,7 +734,9 @@ class BarCodePainter extends CustomPainter {
 
     for (int i = 0; i < 11; i++) {
       Rect rect = new Rect.fromLTWH(i * lineWidth, 0.0, lineWidth, height);
-      ((0x400 & (startValue << i)) == 0x400) ? painter.color = Colors.black : painter.color = Colors.white;
+      ((0x400 & (startValue << i)) == 0x400)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
@@ -982,49 +1046,125 @@ class BarCodePainter extends CustomPainter {
       strValue.setUint8(i, codeValue);
       sum += strValue.getUint8(i) * (i + 1);
       for (int j = 0; j < 11; j++) {
-        Rect rect = new Rect.fromLTWH(11 * lineWidth + 11 * i * lineWidth + j * lineWidth, 0.0, lineWidth, height);
-        ((0x400 & (code128[codeValue] << j)) == 0x400) ? painter.color = Colors.black : painter.color = Colors.white;
+        Rect rect = new Rect.fromLTWH(
+            11 * lineWidth + 11 * i * lineWidth + j * lineWidth,
+            0.0,
+            lineWidth,
+            height);
+        ((0x400 & (code128[codeValue] << j)) == 0x400)
+            ? painter.color = Colors.black
+            : painter.color = Colors.white;
         canvas.drawRect(rect, painter);
       }
     }
 
     checkCode = (sum + 104) % 103;
     for (int i = 0; i < 11; i++) {
-      Rect rect = new Rect.fromLTWH(11 * lineWidth + (strlen * 11 + i) * lineWidth, 0.0, lineWidth, height);
-      ((0x400 & (code128[checkCode] << i)) == 0x400) ? painter.color = Colors.black : painter.color = Colors.white;
+      Rect rect = new Rect.fromLTWH(
+          11 * lineWidth + (strlen * 11 + i) * lineWidth,
+          0.0,
+          lineWidth,
+          height);
+      ((0x400 & (code128[checkCode] << i)) == 0x400)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
     for (int i = 0; i < 13; i++) {
-      Rect rect = new Rect.fromLTWH(22 * lineWidth + (strlen * 11 + i) * lineWidth, 0.0, lineWidth, height);
-      ((0x1000 & (endFlag << i)) == 0x1000) ? painter.color = Colors.black : painter.color = Colors.white;
+      Rect rect = new Rect.fromLTWH(
+          22 * lineWidth + (strlen * 11 + i) * lineWidth,
+          0.0,
+          lineWidth,
+          height);
+      ((0x1000 & (endFlag << i)) == 0x1000)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
     if (hasText) {
       for (int i = 0; i < data.length; i++) {
-        TextSpan span = new TextSpan(style: new TextStyle(color: Colors.black, fontSize: 15.0), text: data[i]);
-        TextPainter textPainter =
-            new TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr);
+        TextSpan span = new TextSpan(
+            style: new TextStyle(color: Colors.black, fontSize: 15.0),
+            text: data[i]);
+        TextPainter textPainter = new TextPainter(
+            text: span,
+            textAlign: TextAlign.left,
+            textDirection: TextDirection.ltr);
         textPainter.layout();
         textPainter.paint(
-            canvas, new Offset((size.width - data.length * 8 * lineWidth) / 2 + 8 * i * lineWidth, height));
+            canvas,
+            new Offset(
+                (size.width - data.length * 8 * lineWidth) / 2 +
+                    8 * i * lineWidth,
+                height));
       }
     }
   }
 
   void _drawBarCodeEAN13(Canvas canvas, Size size) {
-    List<int> codeA = [0x0d, 0x19, 0x13, 0x3d, 0x23, 0x31, 0x2f, 0x3b, 0x37, 0x0b];
-    List<int> codeB = [0x27, 0x33, 0x1b, 0x21, 0x1d, 0x39, 0x05, 0x11, 0x09, 0x17];
-    List<int> codeC = [0x72, 0x66, 0x6c, 0x42, 0x5c, 0x4e, 0x50, 0x44, 0x48, 0x74];
-    List<int> flagCode = [0x00, 0x0b, 0x0d, 0x0e, 0x13, 0x19, 0x1c, 0x15, 0x17, 0x1a];
+    List<int> codeA = [
+      0x0d,
+      0x19,
+      0x13,
+      0x3d,
+      0x23,
+      0x31,
+      0x2f,
+      0x3b,
+      0x37,
+      0x0b
+    ];
+    List<int> codeB = [
+      0x27,
+      0x33,
+      0x1b,
+      0x21,
+      0x1d,
+      0x39,
+      0x05,
+      0x11,
+      0x09,
+      0x17
+    ];
+    List<int> codeC = [
+      0x72,
+      0x66,
+      0x6c,
+      0x42,
+      0x5c,
+      0x4e,
+      0x50,
+      0x44,
+      0x48,
+      0x74
+    ];
+    List<int> flagCode = [
+      0x00,
+      0x0b,
+      0x0d,
+      0x0e,
+      0x13,
+      0x19,
+      0x1c,
+      0x15,
+      0x17,
+      0x1a
+    ];
 
     final data = params.data;
     final lineWidth = params.lineWidth;
     final hasText = params.withText;
 
     int startCodeSep = 0x05, midCodeSep = 0x0a, endCodeSep = 0x05;
-    int tmpCode, tmpBarCode, checkCode, sum2nd, sum3rd, flagbit, strlen = data.length;
+    int tmpCode,
+        tmpBarCode,
+        checkCode,
+        sum2nd,
+        sum3rd,
+        flagbit,
+        strlen = data.length;
     ByteData st = new ByteData(12);
     bool hasError = false;
     final painter = new Paint()..style = PaintingStyle.fill;
@@ -1055,8 +1195,11 @@ class BarCodePainter extends CustomPainter {
     }
 
     for (int j = 0; j < 3; j++) {
-      Rect rect = new Rect.fromLTWH(11 * lineWidth + j * lineWidth, 0.0, lineWidth, hasText ? height * 1.08 : height);
-      ((0x01 & (startCodeSep >> j)) == 0x01) ? painter.color = Colors.black : painter.color = Colors.white;
+      Rect rect = new Rect.fromLTWH(11 * lineWidth + j * lineWidth, 0.0,
+          lineWidth, hasText ? height * 1.08 : height);
+      ((0x01 & (startCodeSep >> j)) == 0x01)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
@@ -1067,16 +1210,26 @@ class BarCodePainter extends CustomPainter {
       } else {
         if ((0x20 & (flagCode[flagbit] << (i - 1))) == 0) {
           for (int j = 0; j < 7; j++) {
-            Rect rect =
-                new Rect.fromLTWH(14 * lineWidth + 7 * (i - 1) * lineWidth + j * lineWidth, 0.0, lineWidth, height);
-            ((0x40 & (codeA[tmpCode] << j)) == 0x40) ? painter.color = Colors.black : painter.color = Colors.white;
+            Rect rect = new Rect.fromLTWH(
+                14 * lineWidth + 7 * (i - 1) * lineWidth + j * lineWidth,
+                0.0,
+                lineWidth,
+                height);
+            ((0x40 & (codeA[tmpCode] << j)) == 0x40)
+                ? painter.color = Colors.black
+                : painter.color = Colors.white;
             canvas.drawRect(rect, painter);
           }
         } else {
           for (int n = 0; n < 7; n++) {
-            Rect rect =
-                new Rect.fromLTWH(14 * lineWidth + 7 * (i - 1) * lineWidth + n * lineWidth, 0.0, lineWidth, height);
-            ((0x40 & (codeB[tmpCode] << n)) == 0x40) ? painter.color = Colors.black : painter.color = Colors.white;
+            Rect rect = new Rect.fromLTWH(
+                14 * lineWidth + 7 * (i - 1) * lineWidth + n * lineWidth,
+                0.0,
+                lineWidth,
+                height);
+            ((0x40 & (codeB[tmpCode] << n)) == 0x40)
+                ? painter.color = Colors.black
+                : painter.color = Colors.white;
             canvas.drawRect(rect, painter);
           }
         }
@@ -1084,22 +1237,41 @@ class BarCodePainter extends CustomPainter {
     }
 
     for (int i = 0; i < 5; i++) {
-      Rect rect = new Rect.fromLTWH(56 * lineWidth + i * lineWidth, 0.0, lineWidth, hasText ? height * 1.08 : height);
-      ((0x01 & (midCodeSep >> i)) == 0x01) ? painter.color = Colors.black : painter.color = Colors.white;
+      Rect rect = new Rect.fromLTWH(56 * lineWidth + i * lineWidth, 0.0,
+          lineWidth, hasText ? height * 1.08 : height);
+      ((0x01 & (midCodeSep >> i)) == 0x01)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
     for (int i = 0; i < 5; i++) {
       tmpBarCode = data.codeUnitAt(i + 7) - 48;
       for (int j = 0; j < 7; j++) {
-        Rect rect = new Rect.fromLTWH(61 * lineWidth + j * lineWidth + 7 * i * lineWidth, 0.0, lineWidth, height);
-        ((0x40 & (codeC[tmpBarCode] << j)) == 0x40) ? painter.color = Colors.black : painter.color = Colors.white;
+        Rect rect = new Rect.fromLTWH(
+            61 * lineWidth + j * lineWidth + 7 * i * lineWidth,
+            0.0,
+            lineWidth,
+            height);
+        ((0x40 & (codeC[tmpBarCode] << j)) == 0x40)
+            ? painter.color = Colors.black
+            : painter.color = Colors.white;
         canvas.drawRect(rect, painter);
       }
     }
 
-    sum3rd = st.getUint8(0) + st.getUint8(2) + st.getUint8(4) + st.getUint8(6) + st.getUint8(8) + st.getUint8(10);
-    sum2nd = st.getUint8(1) + st.getUint8(3) + st.getUint8(5) + st.getUint8(7) + st.getUint8(9) + st.getUint8(11);
+    sum3rd = st.getUint8(0) +
+        st.getUint8(2) +
+        st.getUint8(4) +
+        st.getUint8(6) +
+        st.getUint8(8) +
+        st.getUint8(10);
+    sum2nd = st.getUint8(1) +
+        st.getUint8(3) +
+        st.getUint8(5) +
+        st.getUint8(7) +
+        st.getUint8(9) +
+        st.getUint8(11);
     if ((sum2nd * 3 + sum3rd) % 10 == 0) {
       checkCode = 0;
     } else {
@@ -1107,14 +1279,20 @@ class BarCodePainter extends CustomPainter {
     }
 
     for (int i = 0; i < 7; i++) {
-      Rect rect = new Rect.fromLTWH(96 * lineWidth + i * lineWidth, 0.0, lineWidth, height);
-      ((0x40 & (codeC[checkCode] << i)) == 0x40) ? painter.color = Colors.black : painter.color = Colors.white;
+      Rect rect = new Rect.fromLTWH(
+          96 * lineWidth + i * lineWidth, 0.0, lineWidth, height);
+      ((0x40 & (codeC[checkCode] << i)) == 0x40)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
     for (int i = 0; i < 3; i++) {
-      Rect rect = new Rect.fromLTWH(103 * lineWidth + i * lineWidth, 0.0, lineWidth, hasText ? height * 1.08 : height);
-      ((0x01 & (endCodeSep >> i)) == 0x01) ? painter.color = Colors.black : painter.color = Colors.white;
+      Rect rect = new Rect.fromLTWH(103 * lineWidth + i * lineWidth, 0.0,
+          lineWidth, hasText ? height * 1.08 : height);
+      ((0x01 & (endCodeSep >> i)) == 0x01)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
@@ -1122,38 +1300,78 @@ class BarCodePainter extends CustomPainter {
       (data.length > 13) ? strlen = 13 : strlen = data.length;
       for (int i = 0; i < strlen; i++) {
         if (i == 0) {
-          TextSpan span = new TextSpan(style: new TextStyle(color: Colors.black, fontSize: 15.0), text: data[i]);
-          TextPainter textPainter =
-              new TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr);
+          TextSpan span = new TextSpan(
+              style: new TextStyle(color: Colors.black, fontSize: 15.0),
+              text: data[i]);
+          TextPainter textPainter = new TextPainter(
+              text: span,
+              textAlign: TextAlign.left,
+              textDirection: TextDirection.ltr);
           textPainter.layout();
           textPainter.paint(canvas, new Offset(2 * lineWidth, height));
         } else if (i < 7) {
-          TextSpan span = new TextSpan(style: new TextStyle(color: Colors.black, fontSize: 15.0), text: data[i]);
-          TextPainter textPainter =
-              new TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr);
+          TextSpan span = new TextSpan(
+              style: new TextStyle(color: Colors.black, fontSize: 15.0),
+              text: data[i]);
+          TextPainter textPainter = new TextPainter(
+              text: span,
+              textAlign: TextAlign.left,
+              textDirection: TextDirection.ltr);
           textPainter.layout();
-          textPainter.paint(canvas, new Offset(13 * lineWidth + 7 * (i - 1) * lineWidth, height));
+          textPainter.paint(canvas,
+              new Offset(13 * lineWidth + 7 * (i - 1) * lineWidth, height));
         } else if (i == 12) {
-          TextSpan span =
-              new TextSpan(style: new TextStyle(color: Colors.black, fontSize: 15.0), text: checkCode.toString());
-          TextPainter textPainter =
-              new TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr);
+          TextSpan span = new TextSpan(
+              style: new TextStyle(color: Colors.black, fontSize: 15.0),
+              text: checkCode.toString());
+          TextPainter textPainter = new TextPainter(
+              text: span,
+              textAlign: TextAlign.left,
+              textDirection: TextDirection.ltr);
           textPainter.layout();
-          textPainter.paint(canvas, new Offset(17 * lineWidth + 7 * (i - 1) * lineWidth, height));
+          textPainter.paint(canvas,
+              new Offset(17 * lineWidth + 7 * (i - 1) * lineWidth, height));
         } else {
-          TextSpan span = new TextSpan(style: new TextStyle(color: Colors.black, fontSize: 15.0), text: data[i]);
-          TextPainter textPainter =
-              new TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr);
+          TextSpan span = new TextSpan(
+              style: new TextStyle(color: Colors.black, fontSize: 15.0),
+              text: data[i]);
+          TextPainter textPainter = new TextPainter(
+              text: span,
+              textAlign: TextAlign.left,
+              textDirection: TextDirection.ltr);
           textPainter.layout();
-          textPainter.paint(canvas, new Offset(17 * lineWidth + 7 * (i - 1) * lineWidth, height));
+          textPainter.paint(canvas,
+              new Offset(17 * lineWidth + 7 * (i - 1) * lineWidth, height));
         }
       }
     }
   }
 
   void _drawBarCodeEAN8(Canvas canvas, Size size) {
-    List<int> codeA = [0x0d, 0x19, 0x13, 0x3d, 0x23, 0x31, 0x2f, 0x3b, 0x37, 0x0b];
-    List<int> codeC = [0x72, 0x66, 0x6c, 0x42, 0x5c, 0x4e, 0x50, 0x44, 0x48, 0x74];
+    List<int> codeA = [
+      0x0d,
+      0x19,
+      0x13,
+      0x3d,
+      0x23,
+      0x31,
+      0x2f,
+      0x3b,
+      0x37,
+      0x0b
+    ];
+    List<int> codeC = [
+      0x72,
+      0x66,
+      0x6c,
+      0x42,
+      0x5c,
+      0x4e,
+      0x50,
+      0x44,
+      0x48,
+      0x74
+    ];
     int startCodeSep = 0x05, midCodeSep = 0x0a, endCodeSep = 0x05;
 
     final data = params.data;
@@ -1185,31 +1403,49 @@ class BarCodePainter extends CustomPainter {
     }
 
     for (int i = 0; i < 3; i++) {
-      Rect rect = new Rect.fromLTWH(7 * lineWidth + i * lineWidth, 0.0, lineWidth, hasText ? height * 1.08 : height);
-      ((0x01 & (startCodeSep >> i)) == 0x01) ? painter.color = Colors.black : painter.color = Colors.white;
+      Rect rect = new Rect.fromLTWH(7 * lineWidth + i * lineWidth, 0.0,
+          lineWidth, hasText ? height * 1.08 : height);
+      ((0x01 & (startCodeSep >> i)) == 0x01)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
     for (int i = 0; i < 4; i++) {
       tmpCode = data.codeUnitAt(i) - 48;
       for (int j = 0; j < 7; j++) {
-        Rect rect = new Rect.fromLTWH(10 * lineWidth + j * lineWidth + 7 * i * lineWidth, 0.0, lineWidth, height);
-        ((0x40 & (codeA[tmpCode] << j)) == 0x40) ? painter.color = Colors.black : painter.color = Colors.white;
+        Rect rect = new Rect.fromLTWH(
+            10 * lineWidth + j * lineWidth + 7 * i * lineWidth,
+            0.0,
+            lineWidth,
+            height);
+        ((0x40 & (codeA[tmpCode] << j)) == 0x40)
+            ? painter.color = Colors.black
+            : painter.color = Colors.white;
         canvas.drawRect(rect, painter);
       }
     }
 
     for (int i = 0; i < 5; i++) {
-      Rect rect = new Rect.fromLTWH(38 * lineWidth + i * lineWidth, 0.0, lineWidth, height);
-      ((0x01 & (midCodeSep >> i)) == 0x01) ? painter.color = Colors.black : painter.color = Colors.white;
+      Rect rect = new Rect.fromLTWH(
+          38 * lineWidth + i * lineWidth, 0.0, lineWidth, height);
+      ((0x01 & (midCodeSep >> i)) == 0x01)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
     for (int i = 4; i < 7; i++) {
       tmpBarCode = data.codeUnitAt(i) - 48;
       for (int j = 0; j < 7; j++) {
-        Rect rect = new Rect.fromLTWH(43 * lineWidth + j * lineWidth + 7 * (i - 4) * lineWidth, 0.0, lineWidth, height);
-        ((0x40 & (codeC[tmpBarCode] << j)) == 0x40) ? painter.color = Colors.black : painter.color = Colors.white;
+        Rect rect = new Rect.fromLTWH(
+            43 * lineWidth + j * lineWidth + 7 * (i - 4) * lineWidth,
+            0.0,
+            lineWidth,
+            height);
+        ((0x40 & (codeC[tmpBarCode] << j)) == 0x40)
+            ? painter.color = Colors.black
+            : painter.color = Colors.white;
         canvas.drawRect(rect, painter);
       }
     }
@@ -1223,14 +1459,20 @@ class BarCodePainter extends CustomPainter {
     }
 
     for (int i = 0; i < 7; i++) {
-      Rect rect = new Rect.fromLTWH(64 * lineWidth + i * lineWidth, 0.0, lineWidth, height);
-      ((0x40 & (codeC[checkCode] << i)) == 0x40) ? painter.color = Colors.black : painter.color = Colors.white;
+      Rect rect = new Rect.fromLTWH(
+          64 * lineWidth + i * lineWidth, 0.0, lineWidth, height);
+      ((0x40 & (codeC[checkCode] << i)) == 0x40)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
     for (int i = 0; i < 3; i++) {
-      Rect rect = new Rect.fromLTWH(71 * lineWidth + i * lineWidth, 0.0, lineWidth, hasText ? height * 1.08 : height);
-      ((0x01 & (endCodeSep >> i)) == 0x01) ? painter.color = Colors.black : painter.color = Colors.white;
+      Rect rect = new Rect.fromLTWH(71 * lineWidth + i * lineWidth, 0.0,
+          lineWidth, hasText ? height * 1.08 : height);
+      ((0x01 & (endCodeSep >> i)) == 0x01)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
@@ -1238,32 +1480,68 @@ class BarCodePainter extends CustomPainter {
       strlen > 8 ? strlen = 8 : strlen = data.length;
       for (int i = 0; i < strlen; i++) {
         if (i < 4) {
-          TextSpan span = new TextSpan(style: new TextStyle(color: Colors.black, fontSize: 15.0), text: data[i]);
-          TextPainter textPainter =
-              new TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr);
+          TextSpan span = new TextSpan(
+              style: new TextStyle(color: Colors.black, fontSize: 15.0),
+              text: data[i]);
+          TextPainter textPainter = new TextPainter(
+              text: span,
+              textAlign: TextAlign.left,
+              textDirection: TextDirection.ltr);
           textPainter.layout();
-          textPainter.paint(canvas, new Offset(11 * lineWidth + 7 * i * lineWidth, height));
+          textPainter.paint(
+              canvas, new Offset(11 * lineWidth + 7 * i * lineWidth, height));
         } else if (i == 7) {
-          TextSpan span =
-              new TextSpan(style: new TextStyle(color: Colors.black, fontSize: 15.0), text: checkCode.toString());
-          TextPainter textPainter =
-              new TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr);
+          TextSpan span = new TextSpan(
+              style: new TextStyle(color: Colors.black, fontSize: 15.0),
+              text: checkCode.toString());
+          TextPainter textPainter = new TextPainter(
+              text: span,
+              textAlign: TextAlign.left,
+              textDirection: TextDirection.ltr);
           textPainter.layout();
-          textPainter.paint(canvas, new Offset(15 * lineWidth + 7 * i * lineWidth, height));
+          textPainter.paint(
+              canvas, new Offset(15 * lineWidth + 7 * i * lineWidth, height));
         } else {
-          TextSpan span = new TextSpan(style: new TextStyle(color: Colors.black, fontSize: 15.0), text: data[i]);
-          TextPainter textPainter =
-              new TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr);
+          TextSpan span = new TextSpan(
+              style: new TextStyle(color: Colors.black, fontSize: 15.0),
+              text: data[i]);
+          TextPainter textPainter = new TextPainter(
+              text: span,
+              textAlign: TextAlign.left,
+              textDirection: TextDirection.ltr);
           textPainter.layout();
-          textPainter.paint(canvas, new Offset(15 * lineWidth + 7 * i * lineWidth, height));
+          textPainter.paint(
+              canvas, new Offset(15 * lineWidth + 7 * i * lineWidth, height));
         }
       }
     }
   }
 
   void _drawBarCodeUPCA(Canvas canvas, Size size) {
-    List<int> codeA = [0x0d, 0x19, 0x13, 0x3d, 0x23, 0x31, 0x2f, 0x3b, 0x37, 0x0b];
-    List<int> codeC = [0x72, 0x66, 0x6c, 0x42, 0x5c, 0x4e, 0x50, 0x44, 0x48, 0x74];
+    List<int> codeA = [
+      0x0d,
+      0x19,
+      0x13,
+      0x3d,
+      0x23,
+      0x31,
+      0x2f,
+      0x3b,
+      0x37,
+      0x0b
+    ];
+    List<int> codeC = [
+      0x72,
+      0x66,
+      0x6c,
+      0x42,
+      0x5c,
+      0x4e,
+      0x50,
+      0x44,
+      0x48,
+      0x74
+    ];
     int startCodeSep = 0x05, midCodeSep = 0x0a, endCodeSep = 0x05;
 
     final data = params.data;
@@ -1295,37 +1573,64 @@ class BarCodePainter extends CustomPainter {
     }
 
     for (int i = 0; i < 3; i++) {
-      Rect rect = new Rect.fromLTWH(9 * lineWidth + i * lineWidth, 0.0, lineWidth, hasText ? height * 1.08 : height);
-      ((0x01 & (startCodeSep >> i)) == 0x01) ? painter.color = Colors.black : painter.color = Colors.white;
+      Rect rect = new Rect.fromLTWH(9 * lineWidth + i * lineWidth, 0.0,
+          lineWidth, hasText ? height * 1.08 : height);
+      ((0x01 & (startCodeSep >> i)) == 0x01)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
     for (int i = 0; i < 6; i++) {
       tmpCode = data.codeUnitAt(i) - 48;
       for (int j = 0; j < 7; j++) {
-        Rect rect = new Rect.fromLTWH(12 * lineWidth + 7 * i * lineWidth + j * lineWidth, 0.0, lineWidth, height);
-        ((0x40 & (codeA[tmpCode] << j)) == 0x40) ? painter.color = Colors.black : painter.color = Colors.white;
+        Rect rect = new Rect.fromLTWH(
+            12 * lineWidth + 7 * i * lineWidth + j * lineWidth,
+            0.0,
+            lineWidth,
+            height);
+        ((0x40 & (codeA[tmpCode] << j)) == 0x40)
+            ? painter.color = Colors.black
+            : painter.color = Colors.white;
         canvas.drawRect(rect, painter);
       }
     }
 
     for (int i = 0; i < 5; i++) {
-      Rect rect = new Rect.fromLTWH(54 * lineWidth + i * lineWidth, 0.0, lineWidth, hasText ? height * 1.08 : height);
-      ((0x01 & (midCodeSep >> i)) == 0x01) ? painter.color = Colors.black : painter.color = Colors.white;
+      Rect rect = new Rect.fromLTWH(54 * lineWidth + i * lineWidth, 0.0,
+          lineWidth, hasText ? height * 1.08 : height);
+      ((0x01 & (midCodeSep >> i)) == 0x01)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
     for (int i = 0; i < 5; i++) {
       tmpBarCode = data.codeUnitAt(i + 6) - 48;
       for (int j = 0; j < 7; j++) {
-        Rect rect = new Rect.fromLTWH(59 * lineWidth + j * lineWidth + 7 * i * lineWidth, 0.0, lineWidth, height);
-        ((0x40 & (codeC[tmpBarCode] << j)) == 0x40) ? painter.color = Colors.black : painter.color = Colors.white;
+        Rect rect = new Rect.fromLTWH(
+            59 * lineWidth + j * lineWidth + 7 * i * lineWidth,
+            0.0,
+            lineWidth,
+            height);
+        ((0x40 & (codeC[tmpBarCode] << j)) == 0x40)
+            ? painter.color = Colors.black
+            : painter.color = Colors.white;
         canvas.drawRect(rect, painter);
       }
     }
 
-    sum3rd = st.getUint8(0) + st.getUint8(2) + st.getUint8(4) + st.getUint8(6) + st.getUint8(8) + st.getUint8(10);
-    sum2nd = st.getUint8(1) + st.getUint8(3) + st.getUint8(5) + st.getUint8(7) + st.getUint8(9);
+    sum3rd = st.getUint8(0) +
+        st.getUint8(2) +
+        st.getUint8(4) +
+        st.getUint8(6) +
+        st.getUint8(8) +
+        st.getUint8(10);
+    sum2nd = st.getUint8(1) +
+        st.getUint8(3) +
+        st.getUint8(5) +
+        st.getUint8(7) +
+        st.getUint8(9);
     if ((sum2nd + sum3rd * 3) % 10 == 0) {
       checkCode = 0;
     } else {
@@ -1333,14 +1638,20 @@ class BarCodePainter extends CustomPainter {
     }
 
     for (int i = 0; i < 7; i++) {
-      Rect rect = new Rect.fromLTWH(94 * lineWidth + i * lineWidth, 0.0, lineWidth, height);
-      ((0x40 & (codeC[checkCode] << i)) == 0x40) ? painter.color = Colors.black : painter.color = Colors.white;
+      Rect rect = new Rect.fromLTWH(
+          94 * lineWidth + i * lineWidth, 0.0, lineWidth, height);
+      ((0x40 & (codeC[checkCode] << i)) == 0x40)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
     for (int i = 0; i < 3; i++) {
-      Rect rect = new Rect.fromLTWH(101 * lineWidth + i * lineWidth, 0.0, lineWidth, hasText ? height * 1.08 : height);
-      ((0x01 & (endCodeSep >> i)) == 0x01) ? painter.color = Colors.black : painter.color = Colors.white;
+      Rect rect = new Rect.fromLTWH(101 * lineWidth + i * lineWidth, 0.0,
+          lineWidth, hasText ? height * 1.08 : height);
+      ((0x01 & (endCodeSep >> i)) == 0x01)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
@@ -1348,39 +1659,90 @@ class BarCodePainter extends CustomPainter {
       strlen > 12 ? strlen = 12 : strlen = data.length;
       for (int i = 0; i < strlen; i++) {
         if (i == 0) {
-          TextSpan span = new TextSpan(style: new TextStyle(color: Colors.black, fontSize: 15.0), text: data[i]);
-          TextPainter textPainter =
-              new TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr);
+          TextSpan span = new TextSpan(
+              style: new TextStyle(color: Colors.black, fontSize: 15.0),
+              text: data[i]);
+          TextPainter textPainter = new TextPainter(
+              text: span,
+              textAlign: TextAlign.left,
+              textDirection: TextDirection.ltr);
           textPainter.layout();
           textPainter.paint(canvas, new Offset(3 * lineWidth, height));
         } else if (i < 6) {
-          TextSpan span = new TextSpan(style: new TextStyle(color: Colors.black, fontSize: 15.0), text: data[i]);
-          TextPainter textPainter =
-              new TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr);
+          TextSpan span = new TextSpan(
+              style: new TextStyle(color: Colors.black, fontSize: 15.0),
+              text: data[i]);
+          TextPainter textPainter = new TextPainter(
+              text: span,
+              textAlign: TextAlign.left,
+              textDirection: TextDirection.ltr);
           textPainter.layout();
-          textPainter.paint(canvas, new Offset(16 * lineWidth + 7 * (i - 1) * lineWidth, height));
+          textPainter.paint(canvas,
+              new Offset(16 * lineWidth + 7 * (i - 1) * lineWidth, height));
         } else if (i < 11) {
-          TextSpan span = new TextSpan(style: new TextStyle(color: Colors.black, fontSize: 15.0), text: data[i]);
-          TextPainter textPainter =
-              new TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr);
+          TextSpan span = new TextSpan(
+              style: new TextStyle(color: Colors.black, fontSize: 15.0),
+              text: data[i]);
+          TextPainter textPainter = new TextPainter(
+              text: span,
+              textAlign: TextAlign.left,
+              textDirection: TextDirection.ltr);
           textPainter.layout();
-          textPainter.paint(canvas, new Offset(26 * lineWidth + 7 * (i - 1) * lineWidth, height));
+          textPainter.paint(canvas,
+              new Offset(26 * lineWidth + 7 * (i - 1) * lineWidth, height));
         } else {
-          TextSpan span =
-              new TextSpan(style: new TextStyle(color: Colors.black, fontSize: 15.0), text: checkCode.toString());
-          TextPainter textPainter =
-              new TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr);
+          TextSpan span = new TextSpan(
+              style: new TextStyle(color: Colors.black, fontSize: 15.0),
+              text: checkCode.toString());
+          TextPainter textPainter = new TextPainter(
+              text: span,
+              textAlign: TextAlign.left,
+              textDirection: TextDirection.ltr);
           textPainter.layout();
-          textPainter.paint(canvas, new Offset(35 * lineWidth + 7 * (i - 1) * lineWidth, height));
+          textPainter.paint(canvas,
+              new Offset(35 * lineWidth + 7 * (i - 1) * lineWidth, height));
         }
       }
     }
   }
 
   void _drawBarCodeUPCE(Canvas canvas, Size size) {
-    List<int> codeA = [0x0d, 0x19, 0x13, 0x3d, 0x23, 0x31, 0x2f, 0x3b, 0x37, 0x0b];
-    List<int> codeB = [0x27, 0x33, 0x1b, 0x21, 0x1d, 0x39, 0x05, 0x11, 0x09, 0x17];
-    List<int> checkCodeFlag = [0x38, 0x34, 0x32, 0x31, 0x2c, 0x26, 0x23, 0x2a, 0x29, 0x25];
+    List<int> codeA = [
+      0x0d,
+      0x19,
+      0x13,
+      0x3d,
+      0x23,
+      0x31,
+      0x2f,
+      0x3b,
+      0x37,
+      0x0b
+    ];
+    List<int> codeB = [
+      0x27,
+      0x33,
+      0x1b,
+      0x21,
+      0x1d,
+      0x39,
+      0x05,
+      0x11,
+      0x09,
+      0x17
+    ];
+    List<int> checkCodeFlag = [
+      0x38,
+      0x34,
+      0x32,
+      0x31,
+      0x2c,
+      0x26,
+      0x23,
+      0x2a,
+      0x29,
+      0x25
+    ];
 
     final data = params.data;
     final lineWidth = params.lineWidth;
@@ -1401,24 +1763,35 @@ class BarCodePainter extends CustomPainter {
     String upce2upca;
     switch (data.codeUnitAt(6) - 48) {
       case 0:
-        upce2upca = data[0] + data[1] + data[2] + '00000' + data[3] + data[4] + data[5];
+        upce2upca =
+            data[0] + data[1] + data[2] + '00000' + data[3] + data[4] + data[5];
         break;
       case 1:
       case 2:
-        upce2upca = data[0] + data[1] + data[2] + data[6] + '00000' + data[4] + data[5];
+        upce2upca =
+            data[0] + data[1] + data[2] + data[6] + '00000' + data[4] + data[5];
         break;
       case 3:
-        upce2upca = data[0] + data[1] + data[2] + data[3] + '00000' + data[4] + data[5];
+        upce2upca =
+            data[0] + data[1] + data[2] + data[3] + '00000' + data[4] + data[5];
         break;
       case 4:
-        upce2upca = data[0] + data[1] + data[2] + data[3] + data[4] + '00000' + data[5];
+        upce2upca =
+            data[0] + data[1] + data[2] + data[3] + data[4] + '00000' + data[5];
         break;
       case 5:
       case 6:
       case 7:
       case 8:
       case 9:
-        upce2upca = data[0] + data[1] + data[2] + data[3] + data[4] + data[5] + '0000' + data[6];
+        upce2upca = data[0] +
+            data[1] +
+            data[2] +
+            data[3] +
+            data[4] +
+            data[5] +
+            '0000' +
+            data[6];
         break;
       default:
         break;
@@ -1444,13 +1817,25 @@ class BarCodePainter extends CustomPainter {
     }
 
     for (int i = 0; i < 3; i++) {
-      Rect rect = new Rect.fromLTWH(8 * lineWidth + i * lineWidth, 0.0, lineWidth, hasText ? height * 1.08 : height);
-      ((0x04 & (startCodeSep << i)) == 0x04) ? painter.color = Colors.black : painter.color = Colors.white;
+      Rect rect = new Rect.fromLTWH(8 * lineWidth + i * lineWidth, 0.0,
+          lineWidth, hasText ? height * 1.08 : height);
+      ((0x04 & (startCodeSep << i)) == 0x04)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
-    sum3rd = st.getUint8(0) + st.getUint8(2) + st.getUint8(4) + st.getUint8(6) + st.getUint8(8) + st.getUint8(10);
-    sum2nd = st.getUint8(1) + st.getUint8(3) + st.getUint8(5) + st.getUint8(7) + st.getUint8(9);
+    sum3rd = st.getUint8(0) +
+        st.getUint8(2) +
+        st.getUint8(4) +
+        st.getUint8(6) +
+        st.getUint8(8) +
+        st.getUint8(10);
+    sum2nd = st.getUint8(1) +
+        st.getUint8(3) +
+        st.getUint8(5) +
+        st.getUint8(7) +
+        st.getUint8(9);
     if ((sum2nd + sum3rd * 3) % 10 == 0) {
       checkCode = 0;
     } else {
@@ -1461,22 +1846,37 @@ class BarCodePainter extends CustomPainter {
       tmpCode = data.codeUnitAt(i + 1) - 48;
       if ((0x20 & (checkCodeFlag[checkCode] << i)) == 0x20) {
         for (int j = 0; j < 7; j++) {
-          Rect rect = new Rect.fromLTWH(11 * lineWidth + 7 * i * lineWidth + j * lineWidth, 0.0, lineWidth, height);
-          ((0x40 & (codeB[tmpCode] << j)) == 0x40) ? painter.color = Colors.black : painter.color = Colors.white;
+          Rect rect = new Rect.fromLTWH(
+              11 * lineWidth + 7 * i * lineWidth + j * lineWidth,
+              0.0,
+              lineWidth,
+              height);
+          ((0x40 & (codeB[tmpCode] << j)) == 0x40)
+              ? painter.color = Colors.black
+              : painter.color = Colors.white;
           canvas.drawRect(rect, painter);
         }
       } else {
         for (int k = 0; k < 7; k++) {
-          Rect rect = new Rect.fromLTWH(11 * lineWidth + 7 * i * lineWidth + k * lineWidth, 0.0, lineWidth, height);
-          ((0x40 & (codeA[tmpCode] << k)) == 0x40) ? painter.color = Colors.black : painter.color = Colors.white;
+          Rect rect = new Rect.fromLTWH(
+              11 * lineWidth + 7 * i * lineWidth + k * lineWidth,
+              0.0,
+              lineWidth,
+              height);
+          ((0x40 & (codeA[tmpCode] << k)) == 0x40)
+              ? painter.color = Colors.black
+              : painter.color = Colors.white;
           canvas.drawRect(rect, painter);
         }
       }
     }
 
     for (int i = 0; i < 6; i++) {
-      Rect rect = new Rect.fromLTWH(53 * lineWidth + i * lineWidth, 0.0, lineWidth, hasText ? height * 1.08 : height);
-      ((0x20 & (endCodeSep << i)) == 0x20) ? painter.color = Colors.black : painter.color = Colors.white;
+      Rect rect = new Rect.fromLTWH(53 * lineWidth + i * lineWidth, 0.0,
+          lineWidth, hasText ? height * 1.08 : height);
+      ((0x20 & (endCodeSep << i)) == 0x20)
+          ? painter.color = Colors.black
+          : painter.color = Colors.white;
       canvas.drawRect(rect, painter);
     }
 
@@ -1484,22 +1884,34 @@ class BarCodePainter extends CustomPainter {
       (data.length > 8) ? strlen = 8 : strlen = data.length;
       for (int i = 0; i < strlen; i++) {
         if (i == 0) {
-          TextSpan span = new TextSpan(style: new TextStyle(color: Colors.black, fontSize: 15.0), text: data[i]);
-          TextPainter textPainter =
-              new TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr);
+          TextSpan span = new TextSpan(
+              style: new TextStyle(color: Colors.black, fontSize: 15.0),
+              text: data[i]);
+          TextPainter textPainter = new TextPainter(
+              text: span,
+              textAlign: TextAlign.left,
+              textDirection: TextDirection.ltr);
           textPainter.layout();
           textPainter.paint(canvas, new Offset(2 * lineWidth, height));
         } else if (i < 7) {
-          TextSpan span = new TextSpan(style: new TextStyle(color: Colors.black, fontSize: 15.0), text: data[i]);
-          TextPainter textPainter =
-              new TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr);
+          TextSpan span = new TextSpan(
+              style: new TextStyle(color: Colors.black, fontSize: 15.0),
+              text: data[i]);
+          TextPainter textPainter = new TextPainter(
+              text: span,
+              textAlign: TextAlign.left,
+              textDirection: TextDirection.ltr);
           textPainter.layout();
-          textPainter.paint(canvas, new Offset(12 * lineWidth + 7 * (i - 1) * lineWidth, height));
+          textPainter.paint(canvas,
+              new Offset(12 * lineWidth + 7 * (i - 1) * lineWidth, height));
         } else {
-          TextSpan span =
-              new TextSpan(style: new TextStyle(color: Colors.black, fontSize: 15.0), text: checkCode.toString());
-          TextPainter textPainter =
-              new TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr);
+          TextSpan span = new TextSpan(
+              style: new TextStyle(color: Colors.black, fontSize: 15.0),
+              text: checkCode.toString());
+          TextPainter textPainter = new TextPainter(
+              text: span,
+              textAlign: TextAlign.left,
+              textDirection: TextDirection.ltr);
           textPainter.layout();
           textPainter.paint(canvas, new Offset(60 * lineWidth, height));
         }
@@ -1561,7 +1973,8 @@ class BarCodePainter extends CustomPainter {
     final widedWidth = itfParams.lineWidth * itfParams.wideBarRatio;
     final quietZoneWidth = itfParams.quietZoneRatio * narrowWidth;
     final bearerBarWidth = itfParams.bearerBarRatio * narrowWidth;
-    final height = itfParams.withText ? size.height - fontSize - textPadding : size.height;
+    final height =
+        itfParams.withText ? size.height - fontSize - textPadding : size.height;
     double offsetX = 0;
 
     final painter = Paint()..style = PaintingStyle.fill;
@@ -1590,7 +2003,8 @@ class BarCodePainter extends CustomPainter {
 
       //if not a number return
       if (v0 == null || v1 == null) {
-        String errorMsg = "${cleanData[x]} or ${cleanData[x + 1]} is not a number.";
+        String errorMsg =
+            "${cleanData[x]} or ${cleanData[x + 1]} is not a number.";
         if (this.onError != null) {
           this.onError(errorMsg);
         } else {
@@ -1607,9 +2021,12 @@ class BarCodePainter extends CustomPainter {
         final ye0 = (e0 >> y) & 1;
         final ye1 = (e1 >> y) & 1;
 
-        canvas.drawRect((ye0 == 0 ? narrowBar : wideBar).translate(offsetX, 0), painter);
-        offsetX += ye0 == 0 ? narrowWidth : widedWidth; // push by dark bar width
-        offsetX += ye1 == 0 ? narrowWidth : widedWidth; // push by light bar width
+        canvas.drawRect(
+            (ye0 == 0 ? narrowBar : wideBar).translate(offsetX, 0), painter);
+        offsetX +=
+            ye0 == 0 ? narrowWidth : widedWidth; // push by dark bar width
+        offsetX +=
+            ye1 == 0 ? narrowWidth : widedWidth; // push by light bar width
       }
     }
 
@@ -1664,7 +2081,7 @@ class BarCodePainter extends CustomPainter {
 // Codabar painter
 //　referred　JsBarcode
 // https://github.com/lindell/JsBarcode/blob/master/src/barcodes/codabar/index.js
-void _drawBarCodeCodabar(Canvas canvas, Size size) {
+  void _drawBarCodeCodabar(Canvas canvas, Size size) {
     final bitSet = {
       "0": "101010011",
       "1": "101011001",
@@ -1718,20 +2135,34 @@ void _drawBarCodeCodabar(Canvas canvas, Size size) {
       }
 
       for (int j = 0; j < bitValue.length; j++) {
-        Rect rect = new Rect.fromLTWH(13 * lineWidth + 13 * i * lineWidth + j * lineWidth, 0.0, lineWidth, height);
-        (bitValue[j] == '1') ? painter.color = Colors.black : painter.color = Colors.white;
+        Rect rect = new Rect.fromLTWH(
+            13 * lineWidth + 13 * i * lineWidth + j * lineWidth,
+            0.0,
+            lineWidth,
+            height);
+        (bitValue[j] == '1')
+            ? painter.color = Colors.black
+            : painter.color = Colors.white;
         canvas.drawRect(rect, painter);
       }
     }
 
     if (hasText) {
       for (int i = 0; i < data.length; i++) {
-        TextSpan span = new TextSpan(style: new TextStyle(color: Colors.black, fontSize: 15.0), text: data[i]);
-        TextPainter textPainter =
-            new TextPainter(text: span, textAlign: TextAlign.left, textDirection: TextDirection.ltr);
+        TextSpan span = new TextSpan(
+            style: new TextStyle(color: Colors.black, fontSize: 15.0),
+            text: data[i]);
+        TextPainter textPainter = new TextPainter(
+            text: span,
+            textAlign: TextAlign.left,
+            textDirection: TextDirection.ltr);
         textPainter.layout();
         textPainter.paint(
-            canvas, new Offset((size.width - data.length * 13 * lineWidth) / 2 + 13 * i * lineWidth, height));
+            canvas,
+            new Offset(
+                (size.width - data.length * 13 * lineWidth) / 2 +
+                    13 * i * lineWidth,
+                height));
       }
     }
   }

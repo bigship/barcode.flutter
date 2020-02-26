@@ -93,7 +93,8 @@ class Code128BarCodeParams extends BarCodeParams {
   }) : super(data, withText, lineWidth, barHeight, altText);
 
   @override
-  double get barCodeWidth => (data.length + 2) * 11 * lineWidth + 13 * lineWidth;
+  double get barCodeWidth =>
+      (data.length + 2) * 11 * lineWidth + 13 * lineWidth;
 }
 
 /// Params used for the UPCA BarCode format
@@ -161,14 +162,18 @@ class ITFBarCodeParams extends BarCodeParams {
     this.bearerBarRatio = 3.0,
     this.withBearerBars = true,
     String altText,
-  })  : assert(wideBarRatio >= 2.25 && wideBarRatio <= 3.0, "wideBarRatio must be between 2.25 and 3.0"),
-        assert(quietZoneRatio >= 10, "quietZoneRatio must be greater or equal to 10"),
-        assert(bearerBarRatio >= 2, "bearerBarRatio must be greater or equal to 2"),
+  })  : assert(wideBarRatio >= 2.25 && wideBarRatio <= 3.0,
+            "wideBarRatio must be between 2.25 and 3.0"),
+        assert(quietZoneRatio >= 10,
+            "quietZoneRatio must be greater or equal to 10"),
+        assert(bearerBarRatio >= 2,
+            "bearerBarRatio must be greater or equal to 2"),
         super(data, withText, lineWidth, barHeight, altText);
 
   @override
   double get barCodeWidth =>
-      ((data.length / 2).ceil() * (4 * wideBarRatio + 6) + wideBarRatio + 6) * lineWidth +
+      ((data.length / 2).ceil() * (4 * wideBarRatio + 6) + wideBarRatio + 6) *
+          lineWidth +
       (2 * (lineWidth * quietZoneRatio));
 }
 

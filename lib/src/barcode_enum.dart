@@ -14,5 +14,3 @@ enum BarCodeType {
   Code128,
   Codabar
 }
-
-
