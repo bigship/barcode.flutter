@@ -651,7 +651,7 @@ class BarCodePainter extends CustomPainter {
       0x5de,
       0x5ee,
       0x75e,
-      0x7a2,
+      0x7ae,
       0x684,
       0x690,
       0x69c
