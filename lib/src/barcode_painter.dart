@@ -1692,7 +1692,7 @@ void _drawBarCodeCodabar(Canvas canvas, Size size) {
     final lineWidth = params.lineWidth;
     final hasText = params.withText;
 
-    int codeValue = 0;
+    //int codeValue = 0;
     String bitValue = '';
     bool hasError = false;
     final painter = new Paint()..style = PaintingStyle.fill;
