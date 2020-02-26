@@ -12,6 +12,7 @@ enum BarCodeType {
   CodeUPCA,
   CodeUPCE,
   Code128,
+  Codabar
 }
 
 
