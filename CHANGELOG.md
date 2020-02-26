@@ -11,3 +11,7 @@
 - Add BarCodeParams which allow custom params for each barcode type
 - Add ITF support
 - Fix issue #1, #9, #13 (See github page for details)
+
+## 1.1.1
+- Add Codabar support
+- Fix wrong pattern for value 102 of Code128 ([#20](https://github.com/bigship/barcode.flutter/issues/20))
