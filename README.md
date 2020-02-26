@@ -1,9 +1,13 @@
 __Barcode Flutter is a Flutter library for simple and fast Barcode rendering via custom painter__
 
-![screenshot](http://i.imgur.com/qW856Dh.png)
+![screenshot](https://ibb.co/pzMnV48)
 <hr>
 
 # Update Notes
+1.1.1
+ - Add Codabar support
+ - Fix wrong pattern for value 102 of Code128 ([#20](https://github.com/bigship/barcode.flutter/issues/20))
+
 1.1.0
  - Add ITF support
  - Add BarCodeParams class for future expandability
@@ -28,7 +32,7 @@ You can install the package by adding the following lines to your `pubspec.yaml`
 
 ```yaml
 dependencies:
-    barcode_flutter: ^1.1.0
+    barcode_flutter: ^1.1.1
 ```
 
 After adding the dependency to your `pubspec.yaml` you can run: `flutter packages get` or update your packages using your IDE.
