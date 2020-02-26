@@ -35,11 +35,6 @@ import 'barcode_params.dart';
 /// ```
 class BarCodeImage<T extends BarCodeParams> extends StatelessWidget {
   BarCodeImage({
-    @deprecated this.data,
-    @deprecated this.codeType,
-    @deprecated this.lineWidth = 2.0,
-    @deprecated this.barHeight = 100.0,
-    @deprecated this.hasText = false,
     BarCodeParams params,
     this.padding,
     this.backgroundColor,
