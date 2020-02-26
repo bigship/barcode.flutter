@@ -1,6 +1,6 @@
 __Barcode Flutter is a Flutter library for simple and fast Barcode rendering via custom painter__
 
-![screenshot](https://ibb.co/pzMnV48)
+![screenshot](https://ibb.co/58S2psy/barcode-flutter.png)
 <hr>
 
 # Update Notes
