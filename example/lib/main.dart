@@ -16,16 +16,18 @@ class MyApp extends StatelessWidget {
           BarCodeItem(
             description: "Code39 with text",
             image: BarCodeImage(
-              data: "CODE39",
-              codeType: BarCodeType.Code39,
-              hasText: true,
+              params: Code39BarCodeParams(
+                "CODE39", 
+                withText: true,
+              ),
             ),
           ),
           BarCodeItem(
             description: "Code39",
             image: BarCodeImage(
-              data: "CODE39",
-              codeType: BarCodeType.Code39,
+              params: Code39BarCodeParams(
+                "CODE39",
+              ),
             ),
           ),
           BarCodeItem(
@@ -147,6 +149,23 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ),
+          BarCodeItem(
+            description: "Codabar with text",
+            image: BarCodeImage(
+              params: CodabarBarCodeParams(
+                "A123456789B",
+                withText: true,
+              ),
+            )
+          ),
+          BarCodeItem(
+            description: "Codabar",
+            image: BarCodeImage(
+              params: CodabarBarCodeParams(
+                "A123456789B",
+              ),
+            )
+          )
         ],
       ),
     );
