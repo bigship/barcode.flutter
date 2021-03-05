@@ -32,5 +32,8 @@ android/key.properties
 !AppFrameworkInfo.plist
 ios/Flutter/
 
+# When golden tests fail, diff images go here.
+/test/failures
+
 example/ios/Flutter/flutter_export_environment.sh
 example/android/.idea/
