@@ -1,7 +1,7 @@
 name: barcode_flutter
 description: >
   Barcode flutter is a Flutter library for simple and fast Bar code rendering via a custom painter.
-version: 2.0.0-nullsafety
+version: 2.0.0
 homepage: https://github.com/bigship/barcode.flutter
 
 environment:
