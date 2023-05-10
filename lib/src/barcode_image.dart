@@ -3,14 +3,12 @@
 /// Copyright (c) 2018 the BarCode Flutter authors.
 /// See LICENSE for distribution and usage details.
 ///
+// ignore_for_file: provide_deprecation_message
+
 library barcode_flutter_image;
 
 import 'package:barcode_flutter/barcode_flutter.dart';
-import 'package:barcode_flutter/src/barcode_enum.dart';
 import 'package:flutter/widgets.dart';
-
-import 'barcode_painter.dart';
-import 'barcode_params.dart';
 
 /// A barcode custom painter
 ///
@@ -39,6 +37,7 @@ class BarCodeImage<T extends BarCodeParams?> extends StatelessWidget {
   ///
   ///
   BarCodeImage({
+    super.key,
     @deprecated this.data,
     @deprecated this.codeType,
     @deprecated this.lineWidth = 2.0,

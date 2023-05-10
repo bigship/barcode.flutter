@@ -3,6 +3,8 @@
 /// Copyright (c) 2018 the BarCode Flutter authors.
 /// See LICENSE for distribution and usage details.
 ///
+// ignore_for_file: avoid_print
+
 library barcode_flutter_painter;
 
 import 'dart:typed_data';
@@ -1313,20 +1315,20 @@ class BarCodePainter extends CustomPainter {
     switch (data.codeUnitAt(6) - 48) {
       case 0:
         upce2upca = (data[0] + data[1] + data[2]) +
-            ('00000' + data[3] + data[4] + data[5]);
+            ('00000${data[3]}${data[4]}${data[5]}');
         break;
       case 1:
       case 2:
         upce2upca = (data[0] + data[1] + data[2]) +
-            (data[6] + '00000' + data[4] + data[5]);
+            ('${data[6]}00000${data[4]}${data[5]}');
         break;
       case 3:
         upce2upca = (data[0] + data[1] + data[2]) +
-            (data[3] + '00000' + data[4] + data[5]);
+            ('${data[3]}00000${data[4]}${data[5]}');
         break;
       case 4:
         upce2upca = (data[0] + data[1] + data[2]) +
-            (data[3] + data[4] + '00000' + data[5]);
+            ('${data[3]}${data[4]}00000${data[5]}');
         break;
       case 5:
       case 6:
@@ -1335,7 +1337,7 @@ class BarCodePainter extends CustomPainter {
       case 9:
         upce2upca = data[0] +
             (data[1] + data[2] + data[3]) +
-            (data[4] + data[5] + '0000' + data[6]);
+            ('${data[4]}${data[5]}0000${data[6]}');
         break;
       default:
         break;

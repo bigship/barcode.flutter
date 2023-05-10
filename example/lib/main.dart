@@ -3,6 +3,8 @@
 /// Copyright (c) 2018 the BarCode Flutter authors.
 /// See LICENSE for distribution and usage details.
 ///
+// ignore_for_file: use_key_in_widget_constructors
+
 library barcode_flutter_example;
 
 import 'package:barcode_flutter/barcode_flutter.dart';
@@ -162,7 +164,7 @@ class MyApp extends StatelessWidget {
 ///
 class MyHomePage extends StatefulWidget {
   ///
-  const MyHomePage({this.barcodes, this.title = 'BarCode Flutter'});
+  const MyHomePage({required this.barcodes, this.title = 'BarCode Flutter'});
 
   ///
   final List<BarCodeItem> barcodes;
@@ -229,7 +231,7 @@ class _MyHomePageState extends State<MyHomePage> {
 ///
 class BarCodeItem {
   ///
-  BarCodeItem({this.image, this.description});
+  BarCodeItem({required this.image, required this.description});
 
   ///
   String description;
